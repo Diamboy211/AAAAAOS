@@ -88,9 +88,8 @@ extern void kernel_main()
 		{
 			u32 pixel_pos = tmp - back_scr;
 			u16 p[2] = {pixel_pos % w, pixel_pos / w};
-			float x = (float)(p[0] - w/2) / ((float)w * 2.0f);
-			float y = x;
-			flog2(&y);
+			float x = (float)(p[0] - w/2) / ((float)w * 0.5f);
+			float y = -(finvsqrt(x) * 0.125f);
 			u16 ypos = (y + 1.0f) * (float)h * 0.5f;
 			if (p[1] == ypos) *tmp++ = 0;
 			else *tmp++ = 215;
